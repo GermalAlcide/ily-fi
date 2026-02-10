@@ -1,0 +1,145 @@
+<!-- final.html -->
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Final Page</title>
+        <style>
+            @font-face {
+                font-family: "VCR";
+                src: url("fonts/VCR_OSD_MONO_1.001.ttf") format("truetype");
+                font-weight: normal;
+                font-style: normal;
+            }
+
+            body {
+                margin: 0;
+                height: 100vh;
+                background: url("content/background.jpg") center/cover no-repeat
+                    fixed;
+
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                font-family: "VCR", monospace;
+                color: #fff;
+            }
+
+            .container {
+                text-align: center;
+                padding: 28px;
+                border: 4px solid #000;
+                background: rgba(0, 0, 0, 0.55);
+                box-shadow: 6px 6px 0 #000;
+                border-radius: 12px;
+                max-width: 90vw;
+            }
+
+            .hero-img {
+                width: 260px;
+                max-width: 70vw;
+                image-rendering: pixelated; /* keep pixel look if low-res art */
+                display: block;
+                margin: 0 auto;
+            }
+
+            .text {
+                margin-top: 16px;
+                font-size: 20px;
+                letter-spacing: 2px;
+                text-transform: uppercase;
+            }
+
+            .btn-row {
+                margin-top: 22px;
+                display: flex;
+                justify-content: center;
+                gap: 14px;
+                flex-wrap: wrap;
+            }
+
+            .pixel-btn {
+                display: inline-block;
+                padding: 14px 28px;
+
+                font-family: "VCR", monospace;
+                font-size: 18px;
+                letter-spacing: 2px;
+                text-transform: uppercase;
+
+                text-decoration: none;
+                color: #111;
+
+                border: 4px solid #000;
+                box-shadow:
+                    4px 4px 0 #000,
+                    inset -2px -2px 0 rgba(0, 0, 0, 0.2);
+                background-color: #ffb6d5; /* light pink */
+                cursor: pointer;
+
+                user-select: none;
+            }
+
+            .pixel-btn:hover {
+                background-color: #ffc7e0;
+                transform: translate(2px, 2px);
+                box-shadow: 2px 2px 0 #000;
+            }
+
+            .pixel-btn:active {
+                transform: translate(4px, 4px);
+                box-shadow: none;
+            }
+
+            /* The NO button will be moved around the screen */
+            #noBtn {
+                position: static; /* stays in the flex row beside YES */
+                z-index: 9999;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <img class="hero-img" src="content/thinking-3.jpg" alt="" />
+            <div class="text">Will you be my valentine?</div>
+
+            <div class="btn-row">
+                <a class="pixel-btn" href="page10.html">YES</a>
+                <!-- NO is separate and floats around -->
+                <button class="pixel-btn" id="noBtn" type="button">NO</button>
+            </div>
+        </div>
+
+        <script>
+            const noBtn = document.getElementById("noBtn");
+            let isFloating = false;
+
+            function moveNoButton() {
+                const padding = 10;
+
+                // On first click, take it out of the row so it can move freely
+                if (!isFloating) {
+                    isFloating = true;
+                    noBtn.style.position = "fixed";
+                }
+
+                const rect = noBtn.getBoundingClientRect();
+                const maxX = window.innerWidth - rect.width - padding;
+                const maxY = window.innerHeight - rect.height - padding;
+
+                const x = Math.max(padding, Math.floor(Math.random() * maxX));
+                const y = Math.max(padding, Math.floor(Math.random() * maxY));
+
+                noBtn.style.left = x + "px";
+                noBtn.style.top = y + "px";
+            }
+
+            noBtn.addEventListener("click", moveNoButton);
+            window.addEventListener("resize", () => {
+                if (isFloating) moveNoButton();
+            });
+        </script>
+    </body>
+</html>

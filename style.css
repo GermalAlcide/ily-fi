@@ -1,0 +1,82 @@
+@font-face {
+    font-family: "VCR";
+    src: url("fonts/VCR_OSD_MONO_1.001.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* Background */
+body {
+    margin: 0;
+    height: 100vh;
+
+    background: url("content/background.jpg") center/cover no-repeat;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-family: sans-serif;
+    color: white;
+}
+
+/* Center block */
+.container {
+    text-align: center;
+    padding: 28px;
+    border: 4px solid #000;
+    background: rgba(0, 0, 0, 0.55);
+    box-shadow: 6px 6px 0 #000;
+    border-radius: 12px;
+    max-width: 90vw;
+}
+
+/* GIF */
+.gif {
+    width: 400px; /* adjust */
+    max-width: 80%;
+}
+
+/* Text */
+.text {
+    font-family: "VCR", monospace;
+    font-size: 32px;
+    font-weight: 600;
+}
+
+.pixel-btn {
+    display: inline-block;
+
+    padding: 14px 28px;
+    margin-top: 20px;
+
+    font-family: "VCR", monospace; /* your custom font */
+    font-size: 18px;
+    text-decoration: none;
+
+    color: #111;
+    background-color: #ffb6d5; /* light pink */
+
+    border: 4px solid #000; /* chunky pixel border */
+
+    box-shadow:
+        4px 4px 0 #000,
+        /* hard shadow */ inset -2px -2px 0 rgba(0, 0, 0, 0.2);
+
+    image-rendering: pixelated; /* keeps crisp look */
+}
+
+.pixel-btn:hover {
+    background-color: #ffc7e0;
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0 #000;
+}
+
+.pixel-btn:active {
+    transform: translate(4px, 4px);
+    box-shadow: none;
+}
+
+.container {
+    text-align: center;
+}
